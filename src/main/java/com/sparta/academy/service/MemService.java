@@ -32,7 +32,7 @@ public class MemService {
         );
         return new MemResponseDto(mem);
     }
-
+/////
     public MemResponseDto updateMem(Long id, MemRequestDto requestDto) {
         int updatedCount = memRepository.updateMem(
                 id,
