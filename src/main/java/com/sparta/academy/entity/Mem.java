@@ -1,17 +1,19 @@
 package com.sparta.academy.entity;
 
 import com.sparta.academy.dto.MemRequestDto;
+import com.sparta.academy.dto.MemResponseDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @Entity
 @Getter
-@Table(name="mems")
+@Table(name = "mem")
 @NoArgsConstructor
 public class Mem {
     @Id
@@ -36,8 +38,8 @@ public class Mem {
     @Column(nullable = false)
     private LocalDateTime createDt;
 
-    @Column(nullable = false)
-    private LocalDateTime modifyDt;
+//    @OneToMany(mappedBy = "mem")
+//    private List<Edu> edus;
 
     public Mem(MemRequestDto requestDto) {
         this.name = requestDto.getName();
@@ -46,10 +48,14 @@ public class Mem {
         this.phone = requestDto.getPhone();
         this.info = requestDto.getInfo();
         this.createDt = LocalDateTime.now();
-        this.modifyDt = LocalDateTime.now();
     }
-    @PreUpdate
-    public void preUpdate() {
-        this.modifyDt = LocalDateTime.now();
+
+
+    public void memUpdate(String name, String company, String career, String phone, String info) {
+        this.name = name;
+        this.company = company;
+        this.career = career;
+        this.phone = phone;
+        this.info = info;
     }
 }

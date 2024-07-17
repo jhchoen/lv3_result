@@ -1,6 +1,5 @@
 package com.sparta.academy.controller;
 
-import com.sparta.academy.dto.MemCreateResponseDto;
 import com.sparta.academy.dto.MemRequestDto;
 import com.sparta.academy.dto.MemResponseDto;
 import com.sparta.academy.service.MemService;
@@ -15,7 +14,7 @@ public class MemController {
     }
 
     @PostMapping("/mem")
-    public MemCreateResponseDto createMem(@RequestBody MemRequestDto requestDto) {
+    public MemResponseDto createMem(@RequestBody MemRequestDto requestDto) {
         return memService.createMem(requestDto);
     }
 

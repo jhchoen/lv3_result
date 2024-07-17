@@ -12,8 +12,6 @@ public class AdmResponseDto {
     private String passwd;
     private String dept;
     private String auth;
-    private LocalDateTime createDt;
-    private LocalDateTime modifyDt;
 
     public AdmResponseDto(Adm adm) {
         this.id = adm.getId();
@@ -21,8 +19,6 @@ public class AdmResponseDto {
         this.passwd = adm.getPasswd();
         this.dept = adm.getDept();
         this.auth = adm.getAuth();
-        this.createDt = adm.getCreateDt();
-        this.modifyDt = adm.getModifyDt();
     }
 
 }

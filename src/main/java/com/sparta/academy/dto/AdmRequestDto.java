@@ -10,7 +10,5 @@ public class AdmRequestDto {
     private String passwd;
     private String dept;
     private String auth;
-    private LocalDateTime createDt;
-    private LocalDateTime modifyDt;
 
 }

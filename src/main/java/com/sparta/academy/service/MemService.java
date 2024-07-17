@@ -1,15 +1,11 @@
 package com.sparta.academy.service;
 
-import com.sparta.academy.dto.MemCreateResponseDto;
 import com.sparta.academy.dto.MemRequestDto;
 import com.sparta.academy.dto.MemResponseDto;
-import com.sparta.academy.entity.Adm;
 import com.sparta.academy.entity.Mem;
 import com.sparta.academy.repository.MemRepository;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.NoSuchElementException;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MemService {
@@ -19,11 +15,11 @@ public class MemService {
         this.memRepository = memRepository;
     }
 
-
-    public MemCreateResponseDto createMem(MemRequestDto requestDto) {
+@Transactional
+    public MemResponseDto createMem(MemRequestDto requestDto) {
         Mem mem = new Mem(requestDto);
         memRepository.save(mem);
-        return new MemCreateResponseDto(mem);
+        return new MemResponseDto(mem);
     }
 
     public MemResponseDto getMem(Long id) {
@@ -32,20 +28,27 @@ public class MemService {
         );
         return new MemResponseDto(mem);
     }
-/////
+@Transactional
     public MemResponseDto updateMem(Long id, MemRequestDto requestDto) {
-        int updatedCount = memRepository.updateMem(
-                id,
+        Mem mem = memRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("ID : " + id + "가 잘못되었습니다.")
+        );
+        mem.memUpdate(
                 requestDto.getName(),
-                requestDto.getCareer(),
                 requestDto.getCompany(),
+                requestDto.getCareer(),
                 requestDto.getPhone(),
                 requestDto.getInfo()
         );
-        if (updatedCount == 0) {
-            throw new RuntimeException("업데이트 할 ID가 없거나 잘못되었습니다. : " + id);
-        }
-        Mem mem = memRepository.findById(id).orElseThrow();
-        return new MemResponseDto(mem);
+        memRepository.save(mem);
+        return new MemResponseDto(
+                mem.getId(),
+                mem.getName(),
+                mem.getCompany(),
+                mem.getCareer(),
+                mem.getPhone(),
+                mem.getInfo(),
+                mem.getCreateDt()
+        );
     }
 }

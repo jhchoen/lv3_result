@@ -5,11 +5,10 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class MemRequestDto {
+public class EduRequestDto {
     private String name;
-    private String company;
-    private String career;
-    private String phone;
+    private int price;
     private String info;
-    private LocalDateTime createDt;
+    private String eduType;
+    private String memName;
 }

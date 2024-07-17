@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Getter
-@Table(name="adms")
+@Table(name="adm")
 @NoArgsConstructor
 public class Adm {
     @Id
@@ -31,19 +31,11 @@ public class Adm {
     @Column(nullable = false, length = 500)
     private String passwd;
 
-    @Column(nullable = false)
-    private LocalDateTime createDt;
-
-    @Column(nullable = false)
-    private LocalDateTime modifyDt;
-
     public Adm(AdmRequestDto requestDto){
         this.email = requestDto.getEmail();
         this.dept = requestDto.getDept();
         this.auth = requestDto.getAuth();
         this.passwd = requestDto.getPasswd();
-        this.createDt = LocalDateTime.now();
-        this.modifyDt = LocalDateTime.now();
     }
 
 
