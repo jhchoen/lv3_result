@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class EduResponseDto {
+public class EdugetEduNameResponseDto {
     private Long id;
     private String name;
     private int price;
@@ -15,7 +15,7 @@ public class EduResponseDto {
     private String memName;
     private LocalDateTime createDt;
 
-    public EduResponseDto(Edu edu) {
+    public EdugetEduNameResponseDto(Edu edu) {
         this.id = edu.getId();
         this.name = edu.getName();
         this.price = edu.getPrice();
@@ -24,7 +24,4 @@ public class EduResponseDto {
         this.memName = edu.getMemName();
         this.createDt = edu.getCreateDt();
     }
-
-
-
 }

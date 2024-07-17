@@ -2,6 +2,7 @@ package com.sparta.academy.controller;
 
 import com.sparta.academy.dto.MemRequestDto;
 import com.sparta.academy.dto.MemResponseDto;
+import com.sparta.academy.dto.MemUpdateResponseDto;
 import com.sparta.academy.service.MemService;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class MemController {
     }
 
     @PutMapping("/mem")
-    public MemResponseDto updateMem(@RequestParam Long id, @RequestBody MemRequestDto requestDto) {
+    public MemUpdateResponseDto updateMem(@RequestParam Long id, @RequestBody MemRequestDto requestDto) {
         return memService.updateMem(id, requestDto);
     }
 }

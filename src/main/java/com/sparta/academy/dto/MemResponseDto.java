@@ -25,15 +25,5 @@ public class MemResponseDto {
         this.createDt = mem.getCreateDt();
     }
 
-    public MemResponseDto(Long id, String name, String company, String career, String phone, String info, LocalDateTime createDt) {
-        this.id = id;
-        this.name = name;
-        this.company = company;
-        this.career = career;
-        this.phone = phone;
-        this.info = info;
-        this.createDt = createDt;
-    }
-
 
 }

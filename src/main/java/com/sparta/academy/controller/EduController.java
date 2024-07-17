@@ -1,9 +1,10 @@
 package com.sparta.academy.controller;
 
-import com.sparta.academy.dto.EduRequestDto;
-import com.sparta.academy.dto.EduResponseDto;
+import com.sparta.academy.dto.*;
 import com.sparta.academy.service.EduService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class EduController {
@@ -15,7 +16,7 @@ public class EduController {
     }
 
     @PostMapping("/edu")
-    public EduResponseDto createEdu(EduRequestDto requestDto) {
+    public EduResponseDto createEdu(@RequestBody EduRequestDto requestDto) {
         return eduService.createEdu(requestDto);
     }
 
@@ -24,8 +25,23 @@ public class EduController {
         return eduService.getEdu(id);
     }
 
+    @GetMapping("/edu/")
+    public List<EdugetAllResponseDto> getEdus() {
+        return eduService.getEdus();
+    }
+
+    @GetMapping("/edu/memName")
+    public List<EdugetMemNameResponseDto> getEduMemName(@RequestParam String memName) {
+        return eduService.getEduMemName(memName);
+    }
+
+    @GetMapping("/edu/eduName")
+    public List<EdugetEduNameResponseDto> getEduEduName(@RequestParam String eduName) {
+        return eduService.getEduEduName(eduName);
+    }
+
     @PutMapping("/edu")
-    public EduResponseDto updateEdu(@RequestParam Long id, EduRequestDto requestDto) {
+    public EduUpdateResponseDto updateEdu(@RequestParam Long id, @RequestBody EduRequestDto requestDto) {
         return eduService.updateEdu(id, requestDto);
     }
 }

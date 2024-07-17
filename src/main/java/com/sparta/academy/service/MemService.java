@@ -2,6 +2,7 @@ package com.sparta.academy.service;
 
 import com.sparta.academy.dto.MemRequestDto;
 import com.sparta.academy.dto.MemResponseDto;
+import com.sparta.academy.dto.MemUpdateResponseDto;
 import com.sparta.academy.entity.Mem;
 import com.sparta.academy.repository.MemRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class MemService {
         this.memRepository = memRepository;
     }
 
-@Transactional
+    @Transactional
     public MemResponseDto createMem(MemRequestDto requestDto) {
         Mem mem = new Mem(requestDto);
         memRepository.save(mem);
@@ -28,8 +29,9 @@ public class MemService {
         );
         return new MemResponseDto(mem);
     }
-@Transactional
-    public MemResponseDto updateMem(Long id, MemRequestDto requestDto) {
+
+    @Transactional
+    public MemUpdateResponseDto updateMem(Long id, MemRequestDto requestDto) {
         Mem mem = memRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("ID : " + id + "가 잘못되었습니다.")
         );
@@ -41,7 +43,7 @@ public class MemService {
                 requestDto.getInfo()
         );
         memRepository.save(mem);
-        return new MemResponseDto(
+        return new MemUpdateResponseDto(
                 mem.getId(),
                 mem.getName(),
                 mem.getCompany(),

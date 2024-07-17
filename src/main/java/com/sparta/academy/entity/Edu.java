@@ -50,7 +50,7 @@ public class Edu {
         this.createDt = LocalDateTime.now();
     }
 
-    public void eduUpdate(String name, int price, String info, String eduType, String memName) {
+    public void edu(String name, int price, String info, String eduType, String memName) {
         this.name = name;
         this.price = price;
         this.info = info;
